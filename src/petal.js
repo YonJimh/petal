@@ -4,7 +4,8 @@ const srcToImg = require('./helper/srcToImg');
 
 (async ()=>{
     const browser = await puppeteer.launch({
-        // headless:false
+        // headless:false,
+        Timeout:0
     });
     const page = await browser.newPage();
     await page.goto('http://huaban.com/',{waitUntil: 'networkidle0'});
@@ -33,6 +34,7 @@ const srcToImg = require('./helper/srcToImg');
         console.log(`弄到 ${srcs.length} 张图片`);
 
         srcs.forEach( async src => {
+            await page.waitFor(500);
             await srcToImg(src,conf.image_path);
         });
         await browser.close();

@@ -6,11 +6,12 @@ const {promisify} = require('util');
 const writeFile = promisify(fs.watchFile);
 
 module.exports =  urlToImg = promisify((url, dir,callback) => {
-    
-    // const ext = path.extname(url);
-    const file = path.join(dir, `${Date.now()}.jpg`);
+    const urls = url.split('_')[0];
+    // console.log(urls);
+    const filename = urls.split('//')[1].split('/')[1];
+    const file = path.join(dir, `${filename}.png`);
 
-    https.get(url, res => {
+    http.get(urls, res => {
         res.pipe(fs.createWriteStream(file))
         .on('finish',()=>{
             callback();  //设了回调 用promise让他好看点
