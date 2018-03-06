@@ -1,5 +1,5 @@
-image/*.png
-image/*.jpg
+images/*.png
+images/*.jpg
 # Logs
 logs
 *.log

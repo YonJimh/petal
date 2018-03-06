@@ -5,15 +5,16 @@ const srcToImg = require('./helper/srcToImg');
 (async ()=>{
     const browser = await puppeteer.launch({
         // headless:false,
-        Timeout:0
+        timeout:0
     });
     const page = await browser.newPage();
-    await page.goto('http://huaban.com/',{waitUntil: 'networkidle0'});
-    // await page.setViewport({
-    //     width:3000,
-    //     height:3000
-    // });
-    await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36');
+    await page.goto('http://huaban.com/',{waitUntil: 'networkidle2',timeout:0});
+    await page.setViewport({
+        height:5000,
+        width:1920
+       
+    });
+    // await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36');
 
     await page.focus('#query');
     await page.keyboard.sendCharacter(conf.search);
